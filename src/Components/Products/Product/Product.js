@@ -49,7 +49,7 @@ const Product = ({ product }) => {
 
           {/* rating & reviews */}
           <Box sx={{ display: "flex", mb: 2 }}>
-            <Rating readOnly value={3} />
+            <Rating readOnly value={ratings} />
             <Typography variant="body1" color="text.secondary" gutterBottom>
               (reviews: {reviews})
             </Typography>
