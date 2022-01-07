@@ -19,7 +19,7 @@ const HomeCatagorySection = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    fetch("./shoe.json")
+    fetch("http://localhost:8000/shoes")
       .then((res) => res.json())
       .then((data) => setShoes(data));
   }, []);

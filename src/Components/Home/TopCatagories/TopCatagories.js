@@ -39,7 +39,7 @@ const TopCatagories = () => {
   };
 
   useEffect(() => {
-    fetch("./catagories.json")
+    fetch("http://localhost:8000/catagories")
       .then((res) => res.json())
       .then((data) => setCatagories(data));
   }, []);

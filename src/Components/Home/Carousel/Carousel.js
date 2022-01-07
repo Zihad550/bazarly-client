@@ -24,7 +24,7 @@ const Carousel = () => {
       offer: "15",
     },
     {
-      src: "https://i.ibb.co/hFM4FNn/removeteam2.png",
+      src: "https://i.ibb.co/YNpQz8r/gadgets.jpg",
       bg: "https://img.freepik.com/free-photo/photographic-equipment-with-cellphone-gray-background_23-2147856088.jpg?size=626&ext=jpg",
       title: "Awesome Gadgets",
       offer: "20",

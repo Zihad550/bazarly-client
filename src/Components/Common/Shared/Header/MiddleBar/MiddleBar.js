@@ -26,7 +26,7 @@ const MiddleBar = () => {
       }}
     >
       {/* website logo */}
-      <Typography variant="h5">Logo</Typography>
+      <Typography variant="h5">Bazarly</Typography>
       {/* search area */}
       <Box>
         <TextField

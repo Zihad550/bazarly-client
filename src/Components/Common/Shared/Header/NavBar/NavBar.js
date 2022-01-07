@@ -7,7 +7,13 @@ import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Button, Container, Divider, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  Divider,
+  TextField,
+  Typography,
+} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -45,7 +51,9 @@ function NavBar(props) {
         <ListItem button>Shops</ListItem>
 
         <ListItem button>Products</ListItem>
-        <ListItem onClick={() => navigate("/catagories")} button >Catagories</ListItem>
+        <ListItem onClick={() => navigate("/catagories")} button>
+          Catagories
+        </ListItem>
 
         <ListItem onClick={() => navigate("/products")} button>
           Products
@@ -179,6 +187,9 @@ function NavBar(props) {
                features
                ================== */}
               <Box sx={{ display: { xs: "flex", sm: "none" }, ml: "auto" }}>
+                <Typography variant="h5" sx={{ mr: 3 }}>
+                  Bazarly
+                </Typography>
                 <Box className="primary-hover-effect">
                   <IconButton className="primary-hover-effect">
                     <ScaleOutlinedIcon

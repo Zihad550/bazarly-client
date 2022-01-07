@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const Brands = () => {
   const [brands, setBrands] = useState([]);
   useEffect(() => {
-    fetch("./brands.json")
+    fetch("http://localhost:8000/brands")
       .then((res) => res.json())
       .then((data) => setBrands(data));
   }, []);

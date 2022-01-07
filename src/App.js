@@ -25,10 +25,8 @@ function App() {
             <Route path="/" element={<HomeContainer />} />
             <Route path="/home" element={<HomeContainer />} />
             <Route path="/login" element={<Login />} />
-
             <Route path="/register" element={<Register />} />
             <Route path="/catagories" element={<Catagories />} />
-
             <Route path="/cart" element={<CartContainer />} />
             <Route
               path="/checkout"
