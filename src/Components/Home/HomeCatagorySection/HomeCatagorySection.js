@@ -19,7 +19,7 @@ const HomeCatagorySection = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    fetch("http://localhost:8000/shoes")
+    fetch("https://limitless-crag-38673.herokuapp.com/products?category=shoe")
       .then((res) => res.json())
       .then((data) => setShoes(data));
   }, []);

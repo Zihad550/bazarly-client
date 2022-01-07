@@ -10,11 +10,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Catagories = () => {
+  const navigate = useNavigate();
+
   const [catagories, setCatagories] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/catagories")
+    fetch("https://limitless-crag-38673.herokuapp.com/catagories")
       .then((res) => res.json())
       .then((data) => setCatagories(data));
   }, []);
@@ -26,19 +29,19 @@ const Catagories = () => {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 1, sm: 8, md: 12 }}
         >
-          {catagories.map((catagory) => (
+          {catagories.map((category) => (
             <Grid item xs={2} sm={4} md={4}>
-              <Card>
+              <Card onClick={() => navigate(`/products/${category.name}`)}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
                     height="140"
-                    image={catagory.src}
+                    image={category.src}
                     alt="green iguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {catagory.name}
+                      {category.name}
                     </Typography>
                     <Button variant="outlined">See products</Button>
                   </CardContent>

@@ -1,8 +1,10 @@
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 
 const TopCatagories = () => {
+  const navigate = useNavigate();
   const [catagories, setCatagories] = useState([]);
   const settings = {
     dots: true,
@@ -39,7 +41,7 @@ const TopCatagories = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/catagories")
+    fetch("https://limitless-crag-38673.herokuapp.com/catagories")
       .then((res) => res.json())
       .then((data) => setCatagories(data));
   }, []);
@@ -66,6 +68,7 @@ const TopCatagories = () => {
                 p: { sm: 1, xs: 3 },
                 borderRadius: "5px",
               }}
+              onClick={() => navigate(`/products/${catagory.name}`)}
             >
               <Box>
                 <Box sx={{ overflow: "hidden" }}>

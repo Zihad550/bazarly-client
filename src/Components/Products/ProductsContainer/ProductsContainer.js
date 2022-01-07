@@ -1,27 +1,23 @@
 import { Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Product from "../Product/Product";
 
 const ProductsContainer = () => {
+  const { category } = useParams();
+  console.log(category);
   const [products, setProducts] = useState([]);
+  console.log(products);
   useEffect(() => {
     fetch(
-      "https://asos2.p.rapidapi.com/products/v2/list?store=US&offset=0&categoryId=4209&limit=48&country=US&sort=freshness&currency=USD&sizeSchema=US&lang=en-US",
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "asos2.p.rapidapi.com",
-          "x-rapidapi-key":
-            "2b671826bdmshecaaab6a75a61b2p1b7118jsn4d72b7d5fc1a",
-        },
-      }
+      `https://limitless-crag-38673.herokuapp.com/products?category=${category}`
     )
       .then((res) => res.json())
-      .then((data) => setProducts(data.products));
-  }, []);
+      .then((data) => setProducts(data));
+  }, [category]);
   console.log(products);
   return (
-    <Container>
+    <Container sx={{ my: 4 }}>
       <Grid container spacing={{ md: 2, xs: 1 }}>
         {products.map((product) => (
           <Product key={product.id} product={product} />

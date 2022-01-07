@@ -50,7 +50,6 @@ function NavBar(props) {
         </ListItem>
         <ListItem button>Shops</ListItem>
 
-        <ListItem button>Products</ListItem>
         <ListItem onClick={() => navigate("/catagories")} button>
           Catagories
         </ListItem>
@@ -60,7 +59,9 @@ function NavBar(props) {
         </ListItem>
         <ListItem button>Catagories</ListItem>
 
-        <ListItem button>About</ListItem>
+        <ListItem onClick={() => navigate("/aboutUs")} button>
+          About
+        </ListItem>
         <ListItem onClick={() => navigate("/contactUs")} button>
           Contact Us
         </ListItem>
@@ -129,27 +130,7 @@ function NavBar(props) {
                 >
                   Home
                 </Button>
-                <Button
-                  sx={{
-                    color: "white",
-                    fontSize: 17,
-                    fontWeight: "600",
-                    display: "block",
-                  }}
-                >
-                  Shops
-                </Button>
-                <Button
-                  sx={{
-                    color: "white",
-                    fontSize: 17,
-                    fontWeight: "600",
-                    display: "block",
-                  }}
-                  onClick={() => navigate("/products")}
-                >
-                  Products
-                </Button>
+
                 <Button
                   sx={{
                     color: "white",
@@ -168,6 +149,7 @@ function NavBar(props) {
                     fontWeight: "600",
                     display: "block",
                   }}
+                  onClick={() => navigate("/aboutUs")}
                 >
                   About
                 </Button>

@@ -38,7 +38,7 @@ function App() {
             />
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/aboutUs" element={<AboutUs></AboutUs>}></Route>
-            <Route path="/products" element={<ProductsContainer />} />
+            <Route path="/products/:category" element={<ProductsContainer />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
           <Footer></Footer>

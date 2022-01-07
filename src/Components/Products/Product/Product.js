@@ -16,17 +16,13 @@ import React from "react";
 import SocialIcons from "../../Common/Shared/SocialIcons/SocialIcons";
 
 const Product = ({ product }) => {
-  const { imageUrl, brandName, name, price, colour } = product;
-  console.log(imageUrl);
+  const { src, Brand, name, price, colour, ratings, reviews } = product;
+  console.log(src);
+
   return (
     <Grid item md={3}>
       <Card>
-        <CardMedia
-          component="img"
-          height="140"
-          image={`https://${imageUrl}`}
-          alt="image"
-        />
+        <CardMedia component="img" height="140" image={src} alt="image" />
         <CardContent sx={{ pb: 0 }}>
           <Typography variant="h6" gutterBottom>
             {name}
@@ -38,7 +34,7 @@ const Product = ({ product }) => {
               Colour: {colour}
             </Typography>
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              Brand: {brandName}
+              Brand: {Brand}
             </Typography>
           </Box>
 
@@ -48,14 +44,14 @@ const Product = ({ product }) => {
             sx={{ fontWeight: "bold", mt: 2 }}
             gutterBottom
           >
-            $ {price.current.value}
+            $ {price}
           </Typography>
 
           {/* rating & reviews */}
           <Box sx={{ display: "flex", mb: 2 }}>
             <Rating readOnly value={3} />
             <Typography variant="body1" color="text.secondary" gutterBottom>
-              (3 Reviews)
+              (reviews: {reviews})
             </Typography>
           </Box>
 

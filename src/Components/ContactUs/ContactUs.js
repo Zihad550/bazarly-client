@@ -7,7 +7,7 @@ const ContactUs = () => {
     e.preventDefault();
   };
   return (
-    <Container>
+    <Container sx={{ height: "60vh" }}>
       <Grid
         container
         spacing={{
