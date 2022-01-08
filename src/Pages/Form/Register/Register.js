@@ -1,60 +1,95 @@
-import React, { useRef } from 'react';
-import { Link, useLocation, useNavigate,  } from 'react-router-dom';
-import useAuth from '../../Context/useAuth';
+import { Button, Container, Grid, TextField, Typography } from "@mui/material";
+import React, { useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import src from "../../../images/register.svg";
+import useAuth from "../../Context/useAuth";
 
 const Register = () => {
- const{registerCreatePassword,setIsLoading,updateName}=useAuth();
- let navigate = useNavigate();
- let location = useLocation();
- const uri=location?.state?.from||'/'
+  const { registerCreatePassword, setIsLoading, updateName } = useAuth();
+  let navigate = useNavigate();
+  let location = useLocation();
+  const uri = location?.state?.from || "/";
 
-    const nameRef=useRef();
-    const emailRef=useRef()
-    const passwordRef=useRef()
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-   const handelLogin=(e)=>{
-        e.preventDefault();
-        const name=nameRef.current.value;
-        const email=emailRef.current.value;
-        const password=passwordRef.current.value;
-       
-        console.log(name,email,password);
-        registerCreatePassword(email,password)
-        .then((userCredential) => {
-          setIsLoading(true)
-          updateName(name)
-            // Signed in 
-            const user = userCredential.user;
-            // ...
-            navigate(uri)
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-          })
-          .finally(()=>{
-            setIsLoading(false)
-          })
-    }
-   
-    return (
-        <div className='loginCss'>
-            <h1 style={{textAlign:"center",padding:"40px"}}>Register Here </h1>
-            <div style={{textAlign:"center"}}>
-            <form  onClick={handelLogin}>
-            <input type="text" ref={nameRef} placeholder='Your Name' /> <br />
-            <input type="email" ref={emailRef} placeholder='Your Email' /> <br />
-            <input type="password" ref={passwordRef} placeholder='Your Password' /> <br />
-            <input style={{fontSize:"20px",fontWeight:"bolder"}} type="Submit" value="submit" />
+  const handelLogin = (e) => {
+    e.preventDefault();
+    const name = nameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    console.log(name, email, password);
+    registerCreatePassword(email, password)
+      .then((userCredential) => {
+        setIsLoading(true);
+        updateName(name);
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        navigate(uri);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  return (
+    <Container>
+      <Grid container spacing={{ xs: 1, md: 2 }}>
+        <Grid item md={6} sx={{ display: { xs: "none", md: "flex" } }}>
+          <img src={src} alt="" />
+        </Grid>
+        <Grid item md={6} sx={{ my: { md: "auto", xs: 4 } }}>
+          <Typography
+            variant="h4"
+            sx={{ textAlign: "center", mb: 3, fontWeight: "bold" }}
+          >
+            Create a new account
+          </Typography>
+          <div style={{ textAlign: "center" }}>
+            <form onSubmit={handelLogin}>
+              <TextField
+                fullWidth
+                type="text"
+                ref={nameRef}
+                label="Your Name"
+              />
+              <TextField
+                fullWidth
+                type="email"
+                ref={emailRef}
+                label="Your Email"
+                sx={{ my: 1 }}
+              />
+
+              <TextField
+                fullWidth
+                type="password"
+                ref={passwordRef}
+                label="Your Password"
+                sx={{ mb: 1 }}
+              />
+              <Button fullWidth variant="contained" type="submit">
+                Register
+              </Button>
             </form>
-            
-          <h4>  Already Have an account!<Link to="/login"> Log In</Link></h4>
-      
-       
-            </div>
-        </div>
-    );
+
+            <h4>
+              {" "}
+              Already Have an account!<Link to="/login"> Log In</Link>
+            </h4>
+          </div>
+        </Grid>
+      </Grid>
+    </Container>
+  );
 };
 
 export default Register;
