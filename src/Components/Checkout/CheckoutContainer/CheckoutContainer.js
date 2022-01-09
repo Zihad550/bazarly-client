@@ -14,7 +14,6 @@ import {
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderContainer from "../../Common/Shared/Header/HeaderContainer/HeaderContainer";
 import AddressModal from "../AddressModal/AddressModal";
 import ContactModal from "../ContactModal/ContactModal";
 
@@ -43,7 +42,6 @@ const CheckoutContainer = () => {
   console.log(fieldData);
   return (
     <>
-      <HeaderContainer />
       <Container maxWidth="xl">
         <Paper elevation={4} sx={{ display: "flex", py: 3, my: 3 }}>
           <Typography variant="h5" sx={{ ml: 3 }}>

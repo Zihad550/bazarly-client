@@ -1,7 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AboutUs from "./Components/AboutUs/AboutUs";
+import Login from "./Components/Authentication/Login/Login";
+import Register from "./Components/Authentication/Register/Register";
 import CartContainer from "./Components/Cart/CartContainer/CartContainer";
+import Categories from "./Components/Categories/Categories";
 import CheckoutContainer from "./Components/Checkout/CheckoutContainer/CheckoutContainer";
 import ErrorPage from "./Components/Common/Shared/ErrorPage/ErrorPage";
 import Footer from "./Components/Common/Shared/Footer/Footer";
@@ -10,10 +13,7 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import HomeContainer from "./Components/Home/HomeContainer/HomeContainer";
 import PrivetRoute from "./Components/PrivetRoute/PrivetRoute";
 import ProductsContainer from "./Components/Products/ProductsContainer/ProductsContainer";
-import Catagories from "./Pages/Catagories/Catagories";
-import Authprovider from "./Pages/Context/Authprovider";
-import Login from "./Pages/Form/Login/Login";
-import Register from "./Pages/Form/Register/Register";
+import Authprovider from "./Context/Authprovider";
 
 function App() {
   return (
@@ -26,9 +26,8 @@ function App() {
             <Route path="/home" element={<HomeContainer />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/catagories" element={<Catagories />} />
+            <Route path="/catagories" element={<Categories />} />
             <Route path="/cart" element={<CartContainer />} />
-            <Route path="/cart/:id" element={<CartContainer />} />
             <Route
               path="/checkout"
               element={

@@ -1,11 +1,12 @@
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import src from "../../../images/register.svg";
-import useAuth from "../../Context/useAuth";
 
 const Register = () => {
-  const { registerCreatePassword, setIsLoading, updateName } = useAuth();
+  const { registerCreatePassword, setIsLoading, updateName, setError } =
+    useAuth();
   let navigate = useNavigate();
   let location = useLocation();
   const uri = location?.state?.from || "/";
@@ -20,7 +21,6 @@ const Register = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    console.log(name, email, password);
     registerCreatePassword(email, password)
       .then((userCredential) => {
         setIsLoading(true);
@@ -31,9 +31,7 @@ const Register = () => {
         navigate(uri);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+        setError(error.message);
       })
       .finally(() => {
         setIsLoading(false);

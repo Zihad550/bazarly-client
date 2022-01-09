@@ -16,12 +16,11 @@ import React from "react";
 import SocialIcons from "../../Common/Shared/SocialIcons/SocialIcons";
 import ProductModal from "../../ProductModal/ProductModal";
 
-const Product = ({ product, from }) => {
+const Product = ({ product, fromComponent }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { src, Brand, name, price, colour, ratings, reviews } = product;
-  console.log(src);
 
   return (
     <Grid item md={3}>
@@ -33,12 +32,22 @@ const Product = ({ product, from }) => {
           </Typography>
 
           {/* category & brand */}
-          {from === "homeCategory" || (
+          {fromComponent === "homeCategory" || (
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="body2" color="text.secondary" gutterBottom>
+              <Typography
+                component="span"
+                variant="body2"
+                color="text.secondary"
+                gutterBottom
+              >
                 Colour: {colour}
               </Typography>
-              <Typography variant="body2" color="text.secondary" gutterBottom>
+              <Typography
+                component="span"
+                variant="body2"
+                color="text.secondary"
+                gutterBottom
+              >
                 Brand: {Brand}
               </Typography>
             </Box>
@@ -54,16 +63,21 @@ const Product = ({ product, from }) => {
           </Typography>
 
           {/* rating & reviews */}
-          {from === "homeCategory" || (
+          {fromComponent === "homeCategory" || (
             <Box sx={{ display: "flex", mb: 2 }}>
-              <Rating readOnly value={ratings} />
-              <Typography variant="body1" color="text.secondary" gutterBottom>
+              <Rating readOnly value={parseInt(ratings)} />
+              <Typography
+                component="span"
+                variant="body1"
+                color="text.secondary"
+                gutterBottom
+              >
                 (reviews: {reviews})
               </Typography>
             </Box>
           )}
 
-          {from === "homeCategory" || (
+          {fromComponent === "homeCategory" || (
             <Box
               sx={{
                 mt: 1,

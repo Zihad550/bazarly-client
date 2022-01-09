@@ -12,7 +12,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Catagories = () => {
+const Categories = () => {
   const navigate = useNavigate();
 
   const [catagories, setCatagories] = useState([]);
@@ -30,7 +30,7 @@ const Catagories = () => {
           columns={{ xs: 1, sm: 8, md: 12 }}
         >
           {catagories.map((category) => (
-            <Grid item xs={2} sm={4} md={4}>
+            <Grid key={category._id} item xs={2} sm={4} md={4}>
               <Card onClick={() => navigate(`/products/${category.name}`)}>
                 <CardActionArea>
                   <CardMedia
@@ -55,4 +55,4 @@ const Catagories = () => {
   );
 };
 
-export default Catagories;
+export default Categories;

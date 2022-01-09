@@ -2,15 +2,15 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import img from "../../../images/login2.svg";
-import useAuth from "../../Context/useAuth";
 
 const Login = () => {
   const { setUser, setIsLoading, signInPassword, signInWithGoogles } =
     useAuth();
   let navigate = useNavigate();
   let location = useLocation();
-  const uri = location?.state?.from || "/checkout";
+  const uri = location?.state?.from || "/";
 
   const emailRef = useRef();
   const passwordRef = useRef();

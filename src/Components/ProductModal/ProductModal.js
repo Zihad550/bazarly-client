@@ -15,6 +15,7 @@ import Modal from "@mui/material/Modal";
 import { Box } from "@mui/system";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import SocialIcons from "../Common/Shared/SocialIcons/SocialIcons";
 
 const style = {
@@ -30,19 +31,32 @@ const style = {
 
 export default function ProductModal({ open, handleClose, product }) {
   const [added, setAdded] = React.useState(false);
+  const { user } = useAuth();
   // navigate function
   const navigate = useNavigate();
   const { src, Brand, name, price, colour, ratings, reviews, category, _id } =
     product;
-
+  const newProduct = {
+    src,
+    Brand,
+    name,
+    price,
+    colour,
+    ratings,
+    reviews,
+    category,
+    userEmail: user.email,
+  };
+  React.useEffect(() => {
+    handleClose && setAdded(false);
+  }, [handleClose]);
   const handleAddToCart = () => {
-    console.log("inside add to cart");
     fetch(`https://limitless-crag-38673.herokuapp.com/cart`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(product),
+      body: JSON.stringify(newProduct),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -96,7 +110,7 @@ export default function ProductModal({ open, handleClose, product }) {
 
                   {/* rating & reviews */}
                   <Box sx={{ display: "flex", mb: 2 }}>
-                    <Rating readOnly value={ratings} />
+                    <Rating readOnly value={parseInt(ratings)} />
                     <Typography
                       variant="body1"
                       color="text.secondary"
@@ -142,13 +156,23 @@ export default function ProductModal({ open, handleClose, product }) {
                   </Box>
                 </CardContent>
                 <CardActions>
-                  <Button
-                    onClick={handleAddToCart}
-                    fullWidth
-                    variant="contained"
-                  >
-                    ADD TO CART
-                  </Button>
+                  {user.email ? (
+                    <Button
+                      onClick={handleAddToCart}
+                      fullWidth
+                      variant="contained"
+                    >
+                      ADD TO CART
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => navigate("/login")}
+                      fullWidth
+                      variant="contained"
+                    >
+                      ADD TO CART
+                    </Button>
+                  )}
                 </CardActions>
                 {/* alert if the product is added on cart */}
                 {added && (

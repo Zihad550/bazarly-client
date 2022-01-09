@@ -22,7 +22,7 @@ const HomeCatagorySection = () => {
        category names
        ============== */}
         <Box sx={{ display: "flex" }}>
-          <Typography sx={{ fontWeight: 600, mb: 1 }} variant="h2">
+          <Typography  sx={{ fontWeight: 600, mb: 1 }} variant="h2">
             Shoes
           </Typography>
         </Box>
@@ -34,7 +34,7 @@ const HomeCatagorySection = () => {
           <Grid item sm={12} md={8} lg={8}>
             <Grid container spacing={{ md: 2, xs: 1 }}>
               {shoes.map((shoe) => (
-                <Product key={shoe._id} product={shoe} from="homeCategory" />
+                <Product key={shoe._id} product={shoe} fromComponent="homeCategory" />
               ))}
             </Grid>
           </Grid>
