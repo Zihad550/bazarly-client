@@ -18,18 +18,21 @@ const Carousel = () => {
 
   const carouselInfo = [
     {
+      id: 1,
       src: "https://i.ibb.co/JxBsTHj/removetteam3.png",
       bg: "https://cdn.wallpapersafari.com/99/80/IpEkdW.jpg",
       title: "Healthy Fresh Fruits",
       offer: "15",
     },
     {
+      id: 2,
       src: "https://i.ibb.co/YNpQz8r/gadgets.jpg",
       bg: "https://img.freepik.com/free-photo/photographic-equipment-with-cellphone-gray-background_23-2147856088.jpg?size=626&ext=jpg",
       title: "Awesome Gadgets",
       offer: "20",
     },
     {
+      id: 3,
       src: "https://i.ibb.co/znw80TQ/remove-team1.png",
       bg: "https://wallpaperaccess.com/full/680075.jpg",
       title: "Running Shoes",
@@ -42,6 +45,7 @@ const Carousel = () => {
       <Slider {...settings}>
         {carouselInfo.map((info) => (
           <Box
+            key={info.id}
             sx={{
               backgroundColor: "rgba(236, 231, 231, 0.9)",
               backgroundImage: `url(${info.bg})`,

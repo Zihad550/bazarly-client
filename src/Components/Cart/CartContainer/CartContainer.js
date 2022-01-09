@@ -14,10 +14,14 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CartContainer = () => {
-  const navigate = useNavigate(); /* states */
+  const { id } = useParams();
+  console.log(id);
+  // useNavigate hook
+  const navigate = useNavigate();
+  /* states */
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
 
@@ -36,10 +40,12 @@ const CartContainer = () => {
     console.log(e.taget.innerText);
   };
   useEffect(() => {
-    fetch("./product.json")
+    fetch(
+      `https://limitless-crag-38673.herokuapp.com/products/product?id=${id}`
+    )
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, []);
+  }, [id]);
   return (
     <>
       {/* main cart */}

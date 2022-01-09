@@ -17,7 +17,7 @@ const Brands = () => {
         {brands.map((brand) => (
           <Grid
             sx={{ background: "#f4f4f4", border: "1px solid #dfdfdf" }}
-            key={brand.id}
+            key={brand._id}
             item
             md={3}
             xs={6}

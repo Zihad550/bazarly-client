@@ -1,6 +1,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import {
+  Alert,
   Button,
   Card,
   CardActions,
@@ -13,7 +14,7 @@ import {
 import Modal from "@mui/material/Modal";
 import { Box } from "@mui/system";
 import * as React from "react";
-import img from "../../images/shoe.jpg";
+import { useNavigate } from "react-router-dom";
 import SocialIcons from "../Common/Shared/SocialIcons/SocialIcons";
 
 const style = {
@@ -27,25 +28,41 @@ const style = {
   p: 4,
 };
 
-export default function ProductModal({ open, handleClose }) {
+export default function ProductModal({ open, handleClose, product }) {
+  const [added, setAdded] = React.useState(false);
+  // navigate function
+  const navigate = useNavigate();
+  const { src, Brand, name, price, colour, ratings, reviews, category, _id } =
+    product;
+
+  const handleAddToCart = () => {
+    console.log("inside add to cart");
+    fetch(`https://limitless-crag-38673.herokuapp.com/cart`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        data.insertedId && setAdded(true);
+      });
+  };
   return (
     <div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <Grid container spacing={{ xs: 1, md: 2 }}>
             <Grid item md={6}>
-              <img style={{ width: "100%", height: "auto" }} src={img} alt="" />
+              <img style={{ width: "100%", height: "auto" }} src={src} alt="" />
             </Grid>
             <Grid item md={6}>
               <Card>
                 <CardContent sx={{ pb: 0 }}>
                   <Typography variant="h5" gutterBottom>
-                    Product Name
+                    {name}
                   </Typography>
 
                   {/* category & brand */}
@@ -57,14 +74,14 @@ export default function ProductModal({ open, handleClose }) {
                       color="text.secondary"
                       gutterBottom
                     >
-                      Category: Category name
+                      Category Name: {category}
                     </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
                       gutterBottom
                     >
-                      Brand: Brand name
+                      Brand: {Brand}
                     </Typography>
                   </Box>
 
@@ -74,18 +91,18 @@ export default function ProductModal({ open, handleClose }) {
                     sx={{ fontWeight: "bold", mt: 2 }}
                     gutterBottom
                   >
-                    $ 40
+                    $ {price}
                   </Typography>
 
                   {/* rating & reviews */}
                   <Box sx={{ display: "flex", mb: 2 }}>
-                    <Rating readOnly value={3} />
+                    <Rating readOnly value={ratings} />
                     <Typography
                       variant="body1"
                       color="text.secondary"
                       gutterBottom
                     >
-                      (3 Reviews)
+                      ({reviews} Reviews)
                     </Typography>
                   </Box>
 
@@ -125,10 +142,18 @@ export default function ProductModal({ open, handleClose }) {
                   </Box>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant="contained">
+                  <Button
+                    onClick={handleAddToCart}
+                    fullWidth
+                    variant="contained"
+                  >
                     ADD TO CART
                   </Button>
                 </CardActions>
+                {/* alert if the product is added on cart */}
+                {added && (
+                  <Alert severity="success">Successfully added to cart</Alert>
+                )}
               </Card>
             </Grid>
           </Grid>

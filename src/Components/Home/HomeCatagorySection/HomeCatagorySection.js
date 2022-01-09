@@ -1,16 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Rating,
-  Typography,
-} from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import banner from "../../../images/product-banner.png";
-import ProductModal from "../../ProductModal/ProductModal";
+import Product from "../../Products/Product/Product";
 
 const HomeCatagorySection = () => {
   const [shoes, setShoes] = useState([]);
@@ -42,49 +34,12 @@ const HomeCatagorySection = () => {
           <Grid item sm={12} md={8} lg={8}>
             <Grid container spacing={{ md: 2, xs: 1 }}>
               {shoes.map((shoe) => (
-                <Grid item md={3} lg={3} sm={4} xs={12}>
-                  <Card onClick={handleOpen} className="secondary-hover-effect">
-                    <Box sx={{ overflow: "hidden" }}>
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image={shoe.src}
-                        alt="green iguana"
-                      />
-                    </Box>
-                    <CardContent
-                      sx={{ textAlign: "center", pb: "0 !important" }}
-                    >
-                      <Typography gutterBottom variant="h5" component="div">
-                        {shoe.name}
-                      </Typography>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Rating value={shoe.ratings} readOnly />
-                        <Typography variant="body2">
-                          ({shoe.reviews})
-                        </Typography>
-                      </Box>
-                      <Typography
-                        sx={{ textAlign: "center", my: 2 }}
-                        variant="h5"
-                      >
-                        $ {shoe.price}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
+                <Product key={shoe._id} product={shoe} from="homeCategory" />
               ))}
             </Grid>
           </Grid>
         </Grid>
       </Container>
-      <ProductModal open={open} handleClose={handleClose} />
     </>
   );
 };

@@ -55,10 +55,10 @@ const TopCatagories = () => {
           Top Catagories
         </Typography>
         <Slider {...settings}>
-          {catagories.map((catagory) => (
+          {catagories.map((category) => (
             <Box
               className="secondary-hover-effect"
-              key={catagory.id}
+              key={category._id}
               sx={{
                 background: "white",
                 width: {
@@ -68,17 +68,17 @@ const TopCatagories = () => {
                 p: { sm: 1, xs: 3 },
                 borderRadius: "5px",
               }}
-              onClick={() => navigate(`/products/${catagory.name}`)}
+              onClick={() => navigate(`/products/${category.name}`)}
             >
               <Box>
                 <Box sx={{ overflow: "hidden" }}>
                   <img
                     style={{ borderRadius: "5px" }}
-                    src={catagory.src}
+                    src={category.src}
                     alt=""
                   />
                 </Box>
-                <Typography variant="body2">{catagory.name}</Typography>
+                <Typography variant="body2">{category.name}</Typography>
               </Box>
             </Box>
           ))}

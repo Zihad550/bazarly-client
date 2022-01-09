@@ -14,8 +14,12 @@ import {
 import { Box } from "@mui/system";
 import React from "react";
 import SocialIcons from "../../Common/Shared/SocialIcons/SocialIcons";
+import ProductModal from "../../ProductModal/ProductModal";
 
-const Product = ({ product }) => {
+const Product = ({ product, from }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const { src, Brand, name, price, colour, ratings, reviews } = product;
   console.log(src);
 
@@ -29,14 +33,16 @@ const Product = ({ product }) => {
           </Typography>
 
           {/* category & brand */}
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
-              Colour: {colour}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
-              Brand: {Brand}
-            </Typography>
-          </Box>
+          {from === "homeCategory" || (
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                Colour: {colour}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                Brand: {Brand}
+              </Typography>
+            </Box>
+          )}
 
           {/* price */}
           <Typography
@@ -48,46 +54,51 @@ const Product = ({ product }) => {
           </Typography>
 
           {/* rating & reviews */}
-          <Box sx={{ display: "flex", mb: 2 }}>
-            <Rating readOnly value={ratings} />
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-              (reviews: {reviews})
-            </Typography>
-          </Box>
+          {from === "homeCategory" || (
+            <Box sx={{ display: "flex", mb: 2 }}>
+              <Rating readOnly value={ratings} />
+              <Typography variant="body1" color="text.secondary" gutterBottom>
+                (reviews: {reviews})
+              </Typography>
+            </Box>
+          )}
 
-          <Box
-            sx={{
-              mt: 1,
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <SocialIcons />
+          {from === "homeCategory" || (
             <Box
               sx={{
+                mt: 1,
                 display: "flex",
-                borderLeft: "2px solid gray",
+                justifyContent: "center",
               }}
             >
-              <Box className="primary-hover-effect">
-                <IconButton className="primary-hover-effect">
-                  <ScaleOutlinedIcon fontSize="normal" />
-                </IconButton>
-              </Box>
-              <Box className="primary-hover-effect">
-                <IconButton className="primary-hover-effect">
-                  <FavoriteBorderIcon fontSize="normal" />
-                </IconButton>
+              <SocialIcons />
+              <Box
+                sx={{
+                  display: "flex",
+                  borderLeft: "2px solid gray",
+                }}
+              >
+                <Box className="primary-hover-effect">
+                  <IconButton className="primary-hover-effect">
+                    <ScaleOutlinedIcon fontSize="normal" />
+                  </IconButton>
+                </Box>
+                <Box className="primary-hover-effect">
+                  <IconButton className="primary-hover-effect">
+                    <FavoriteBorderIcon fontSize="normal" />
+                  </IconButton>
+                </Box>
               </Box>
             </Box>
-          </Box>
+          )}
         </CardContent>
         <CardActions>
-          <Button fullWidth variant="contained">
-            ADD TO CART
+          <Button onClick={handleOpen} fullWidth variant="contained">
+            Purchase
           </Button>
         </CardActions>
       </Card>
+      <ProductModal open={open} product={product} handleClose={handleClose} />
     </Grid>
   );
 };
