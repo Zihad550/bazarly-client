@@ -13,7 +13,6 @@ const CartContainer = () => {
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [isDeleted, setIsDeleted] = useState(false);
-  const [total, setTotal] = useState(0);
 
   const handleAddQuantity = () => {
     setQuantity(quantity + 1);
@@ -92,8 +91,6 @@ const CartContainer = () => {
                 key={product._id}
                 product={product}
                 handleDelete={handleDelete}
-                total={total}
-                setTotal={setTotal}
               />
             ))}
           </Grid>

@@ -3,9 +3,8 @@ import { Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
-const CartProduct = ({ product, handleDelete, setTotal, total }) => {
+const CartProduct = ({ product, handleDelete }) => {
   const { name, price, src } = product;
-  setTotal(total + price);
 
   return (
     <Grid
