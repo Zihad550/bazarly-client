@@ -1,11 +1,11 @@
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React from "react";
 
-const CartProduct = ({ product, handleDelete }) => {
-  const [x, setX] = useState(0);
+const CartProduct = ({ product, handleDelete, setTotal, total }) => {
   const { name, price, src } = product;
+  setTotal(total + price);
 
   return (
     <Grid
